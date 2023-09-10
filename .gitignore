@@ -1,7 +1,6 @@
 .idea
 .DS_Store
-database.db
 target
 cargo.lock
 
-database.db
+human.db

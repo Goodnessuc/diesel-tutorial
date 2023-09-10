@@ -1,9 +1,9 @@
 // #![feature(proc_macro_hygiene, decl_macro)]
 //
 //
-
-
-
+//
+//
+//
 // mod schema;
 // mod database;
 //
@@ -22,12 +22,12 @@
 //     pub email: String,
 //     pub location: String,
 // }
-
-
-
-
-
-
+//
+//
+//
+//
+//
+//
 //
 // fn main() {
 //     let mut connection = establish_connection();

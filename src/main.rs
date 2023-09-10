@@ -3,22 +3,24 @@
 #[macro_use]
 extern crate diesel;
 
-
 mod schema;
 mod database;
 
-#[derive(Debug, Queryable)]
-pub struct Human {
-    pub id: i32,
-    pub first_name: String,
-    pub last_name: String,
-    pub age: i32,
-    pub username: String,
-    pub email: String,
-    pub location: String,
+use diesel::prelude::*;
+
+use crate::schema::human::dsl::human;
+
+use crate::database::establish_connection;
+
+fn main() {
+    let id_to_delete = 1;
+
+
+    let mut connection = establish_connection();
+
+    let deleted_rows = diesel::delete(human.find(id_to_delete)).execute(&mut connection)?;
+
+
+    println!("Deleted {} rows.", deleted_rows);
 }
 
-
-fn main(){
-
-}
