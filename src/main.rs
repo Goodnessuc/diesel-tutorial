@@ -1,26 +1,35 @@
 #![feature(proc_macro_hygiene, decl_macro)]
-
-#[macro_use]
 extern crate diesel;
 
 mod schema;
 mod database;
 
+use chrono::NaiveDateTime;
 use diesel::prelude::*;
-
-use crate::schema::human::dsl::human;
-
 use crate::database::establish_connection;
 
-fn main() {
-    let id_to_delete = 1;
 
 
-    let mut connection = establish_connection();
 
-    let deleted_rows = diesel::delete(human.find(id_to_delete)).execute(&mut connection)?;
-
-
-    println!("Deleted {} rows.", deleted_rows);
+#[derive(Debug, Queryable, Insertable)]
+pub struct Item {
+    pub id: i32,
+    pub name: String,
+    pub item_type_id: i32,
+    pub acquired_time: NaiveDateTime,
 }
 
+
+
+
+#[derive(Debug, Queryable, Insertable)]
+pub struct ItemType {
+    pub id: i32,
+    pub name: String,
+}
+
+fn main() {
+
+
+
+}
