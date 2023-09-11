@@ -1,13 +1,24 @@
 // @generated automatically by Diesel CLI.
 
 diesel::table! {
-    human (id) {
-        id -> Integer,
-        first_name -> Text,
-        last_name -> Text,
-        age -> Integer,
-        username -> Nullable<Text>,
-        email -> Nullable<Text>,
-        location -> Nullable<Text>,
+    item (id) {
+        id -> Nullable<Integer>,
+        name -> Text,
+        item_type_id -> Integer,
+        acquired_time -> Timestamp,
     }
 }
+
+diesel::table! {
+    item_type (id) {
+        id -> Nullable<Integer>,
+        name -> Text,
+    }
+}
+
+diesel::joinable!(item -> item_type (item_type_id));
+
+diesel::allow_tables_to_appear_in_same_query!(
+    item,
+    item_type,
+);
